@@ -1,10 +1,8 @@
 /*--------------Aitl.class.js-----------------*/
-var aitl = function () { var objet = { 
+var aitl = function (name) { var objet = { 
+
+	couleur : "blanc"
 
 
 
-
-
-
-
-}; return heritage(activable, objet);};
+}; return heritage(activable(name), objet);};

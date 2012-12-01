@@ -1,12 +1,11 @@
 /*--------------Item.class.js-----------------*/
 var item = function (name) { var objet = { 
 
-    type: name
+    type : name
+    
+    
+    
+    
+    
 
-
-
-
-
-
-
-}; return heritage(window[name], objet);};
+}; return heritage(window[name](name), objet);};

@@ -1,12 +1,24 @@
 /*--------------Activable.class.js-----------------*/
-var activable = function () { var objet = {
+var activable = function (name) { var objet = {
 
-	estOuvert: "false"
-
-
-
-
-
+	estOuvert: function() { 
+			var reg = new RegExp("^db_"+name+"_\\d+$", "i");
+			return (getElementsByRegExpId(reg).length != 0) ? true : false;
+		}
 
 
-}; return objet };
+
+
+
+
+
+
+
+
+
+
+}; 
+
+objet.estOuvert.toString = function() { return objet.estOuvert() };
+
+return objet;};
