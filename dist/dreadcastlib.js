@@ -1,4 +1,4 @@
-/*! DreadCastLib - v0 - 2012-11-17
+/*! DreadCastLib - v0 - 2012-12-01
 * http://www.dreadcast.me/
 * Copyright (c) 2012 Nobody; Licensed WTF Public License */
 
@@ -27,13 +27,7 @@ var activable = function () { var objet = {
 
 
 
-
-
-
-
-
-
-}; return heritage(activable, objet); };
+}; return objet };
 
 /*--------------Item.class.js-----------------*/
 var item = function (name) { var objet = { 
@@ -50,10 +44,6 @@ var item = function (name) { var objet = {
 
 /*--------------Aitl.class.js-----------------*/
 var aitl = function () { var objet = { 
-
-	type: name
-
-
 
 
 

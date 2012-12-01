@@ -9,10 +9,4 @@ var activable = function () { var objet = {
 
 
 
-
-
-
-
-
-
-}; return heritage(activable, objet); };
+}; return objet };
