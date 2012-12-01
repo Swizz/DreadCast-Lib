@@ -3,6 +3,9 @@
 * Copyright (c) 2012 Nobody; Licensed WTF Public License */
 
 /*--------------Init.js-----------------*/
+var VRAI = true; 
+var FAUX = false;
+
 
 /*-------------Faire un heritage-------------------*/
 function heritage(object1, object2) { 
@@ -50,6 +53,9 @@ function getElementsByRegExpId(p_regexp, p_element, p_tagName) {
 
 
 /*--------------Activable.class.js-----------------*/
+
+var Execute = { null : null };
+
 var activable = function (name) { var objet = {
 
 	estOuvert: function() { 
@@ -58,25 +64,34 @@ var activable = function (name) { var objet = {
 		},
 
 	ouverture: function(callback) { 
-			/*setInterval(test, 1000);
+			Execute[name] = false;
+			Execute[name+"_"] = function() {
+				if (item(name).estOuvert() && !Execute[name]){
+					callback();
+					Execute[name] = true;
+				}
+				else if (!item(name).estOuvert() && Execute[name]) {
+					Execute[name] = false;
+				}
+			}
 			
-			function test() {
-				if (item(name).estOuvert){
-					ok();
+			setInterval(Execute[name+"_"], 1000);
+		},
+		
+	fermeture: function(callback) { 
+			Execute[name] = false;
+			Execute["_"+name] = function() {
+				if (item(name).estOuvert() && !Execute[name]){
+					Execute[name] = true;
 				}
-				else if (!uno){
-					uno=true;
+				else if (!item(name).estOuvert() && Execute[name]) {
+					callback();
+					Execute[name] = false;
 				}
-			}*/
+			}
+			
+			setInterval(Execute["_"+name], 1000);
 		}
-
-
-
-
-
-
-
-
 
 
 }; 
