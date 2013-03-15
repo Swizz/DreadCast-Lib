@@ -42,6 +42,6 @@ classes["activable"] = function (name) { var objet = {
 
 }; 
 
-objet.estOuvert.toString = function() { return objet.estOuvert(); 
+objet.estOuvert.toString = function() { return objet.estOuvert(); };
 
-};return objet;};
+return objet;};
