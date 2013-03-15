@@ -57,7 +57,7 @@ function getElementsByRegExpId(p_regexp, p_element, p_tagName) {
 
 var Execute = { null : null };
 
-classe["activable"] = function (name) { var objet = {
+classes["activable"] = function (name) { var objet = {
 
 	estOuvert: function() { 
 			var reg = new RegExp("^db_"+name+"_\\d+$", "i");
