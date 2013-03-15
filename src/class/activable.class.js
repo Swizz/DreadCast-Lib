@@ -2,7 +2,7 @@
 
 var Execute = { null : null };
 
-var activable = function (name) { var objet = {
+classes["activable"] = function (name) { var objet = {
 
 	estOuvert: function() { 
 			var reg = new RegExp("^db_"+name+"_\\d+$", "i");
@@ -10,38 +10,38 @@ var activable = function (name) { var objet = {
 		},
 
 	ouverture: function(callback) { 
-			Execute[name] = false;
+			Execute[name+"-"] = false;
 			Execute[name+"_"] = function() {
-				if (item(name).estOuvert() && !Execute[name]){
+				if (item(name).estOuvert() && !Execute[name+"-"]){
 					callback();
-					Execute[name] = true;
+					Execute[name+"-"] = true;
 				}
-				else if (!item(name).estOuvert() && Execute[name]) {
-					Execute[name] = false;
+				else if (!item(name).estOuvert() && Execute[name+"-"]) {
+					Execute[name+"-"] = false;
 				}
 			}
 			
-			setInterval(Execute[name+"_"], 1000);
+			setInterval(Execute[name+"_"], 500);
 		},
 		
 	fermeture: function(callback) { 
-			Execute[name] = false;
+			Execute["-"+name] = false;
 			Execute["_"+name] = function() {
-				if (item(name).estOuvert() && !Execute[name]){
-					Execute[name] = true;
+				if (item(name).estOuvert() && !Execute["-"+name]){
+					Execute["-"+name] = true;
 				}
-				else if (!item(name).estOuvert() && Execute[name]) {
+				else if (!item(name).estOuvert() && Execute["-"+name]) {
 					callback();
-					Execute[name] = false;
+					Execute["-"+name] = false;
 				}
 			}
 			
-			setInterval(Execute["_"+name], 1000);
+			setInterval(Execute["_"+name], 500);
 		}
 
 
 }; 
 
-objet.estOuvert.toString = function() { return objet.estOuvert(); };
+objet.estOuvert.toString = function() { return objet.estOuvert(); 
 
-return objet;};
+};return objet;};
