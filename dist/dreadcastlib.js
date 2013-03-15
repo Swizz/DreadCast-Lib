@@ -147,14 +147,14 @@ classes["terminal portable"] = function (name) { var objet = {
 }; return heritage(classes["activable"], objet);};
 
 
-/*--------------TerminalPortable.class.js-----------------*/
-classes["terminal portable"] = function (name) { var objet = { 
+/*--------------None.class.js-----------------*/
+classes["none"] = function (name) { var objet = { 
 
 	//nothing here
 
 
 
-}; return heritage(classes["activable"], objet);};
+}; return objet; };
 
 
 /*--------------Aitl.class.js-----------------*/
