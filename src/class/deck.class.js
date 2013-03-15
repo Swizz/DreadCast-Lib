@@ -6,6 +6,6 @@ classes["deck"] = function (name) { var objet = {
 
 
 
-}; return heritage(classes["activable"], objet);};
+}; return heritage(classes["activable"](name), objet);};
 
 //TODO : faire la distinction entre Orion, Retro et autre.

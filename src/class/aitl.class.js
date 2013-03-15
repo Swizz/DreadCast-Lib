@@ -5,4 +5,4 @@ classes["aitl"] = function (name) { var objet = {
 
 
 
-}; return heritage(classes["activable"], objet);};
+}; return heritage(classes["activable"](name), objet);};

@@ -123,7 +123,7 @@ classes["deck"] = function (name) { var objet = {
 
 
 
-}; return heritage(classes["activable"], objet);};
+}; return heritage(classes["activable"](name), objet);};
 
 //TODO : faire la distinction entre Orion, Retro et autre.
 
@@ -134,7 +134,7 @@ classes["convertisseur pti"] = function (name) { var objet = {
 
 
 
-}; return heritage(classes["activable"], objet);};
+}; return heritage(classes["activable"](name), objet);};
 
 
 /*--------------TerminalPortable.class.js-----------------*/
@@ -144,7 +144,7 @@ classes["terminal portable"] = function (name) { var objet = {
 
 
 
-}; return heritage(classes["activable"], objet);};
+}; return heritage(classes["activable"](name), objet);};
 
 
 /*--------------None.class.js-----------------*/
@@ -164,4 +164,4 @@ classes["aitl"] = function (name) { var objet = {
 
 
 
-}; return heritage(classes["activable"], objet);};
+}; return heritage(classes["activable"](name), objet);};
