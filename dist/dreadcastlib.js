@@ -5,6 +5,7 @@
 /*--------------Init.js-----------------*/
 var VRAI = true; 
 var FAUX = false;
+var classes = {};
 
 
 /*-------------Faire un heritage-------------------*/
@@ -56,7 +57,7 @@ function getElementsByRegExpId(p_regexp, p_element, p_tagName) {
 
 var Execute = { null : null };
 
-var activable = function (name) { var objet = {
+classe["activable"] = function (name) { var objet = {
 
 	estOuvert: function() { 
 			var reg = new RegExp("^db_"+name+"_\\d+$", "i");
@@ -96,12 +97,12 @@ var activable = function (name) { var objet = {
 
 }; 
 
-objet.estOuvert.toString = function() { return objet.estOuvert(); };
+objet.estOuvert.toString = function() { return objet.estOuvert(); 
 
-return objet;};
+};return objet;};
 
 /*--------------Item.class.js-----------------*/
-var item = function (name) { var objet = { 
+classes["item"] = function (name) { var objet = { 
 
     type : name
     
@@ -112,8 +113,10 @@ var item = function (name) { var objet = {
 
 }; return heritage(window[name](name), objet);};
 
+var item = classes["item"];
+
 /*--------------Aitl.class.js-----------------*/
-var aitl = function (name) { var objet = { 
+classes["aitl"] = function (name) { var objet = { 
 
 	couleur : "blanc"
 
