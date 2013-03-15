@@ -76,7 +76,7 @@ classes["activable"] = function (name) { var objet = {
 				}
 			}
 			
-			setInterval(Execute[name+"_"], 1000);
+			setInterval(Execute[name+"_"], 500);
 		},
 		
 	fermeture: function(callback) { 
@@ -91,7 +91,7 @@ classes["activable"] = function (name) { var objet = {
 				}
 			}
 			
-			setInterval(Execute["_"+name], 1000);
+			setInterval(Execute["_"+name], 500);
 		}
 
 
