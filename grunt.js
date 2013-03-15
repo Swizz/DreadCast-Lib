@@ -23,12 +23,6 @@ module.exports = function(grunt) {
     lint: {
       files: ['contat.dist.dest' ]
     },
-    min: {
-      dist: {
-        src: ['<banner:meta.banner>', '<config:concat.dist.dest>'],
-        dest: 'dist/<%= pkg.name %>.min.js'
-      }
-    },
     watch: {
       files: '<config:lint.files>',
       tasks: 'lint qunit'
@@ -55,6 +49,6 @@ module.exports = function(grunt) {
   });
 
   // Default task.
-  grunt.registerTask('default', 'lint qunit concat min');
+  grunt.registerTask('default', 'lint qunit concat');
 
 };
