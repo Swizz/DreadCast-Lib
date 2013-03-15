@@ -69,11 +69,9 @@ classes["activable"] = function (name) { var objet = {
 			Execute[name+"_"] = function() {
 				if (item(name).estOuvert() && !Execute[name]){
 					callback();
-					alert("exec :" + Execute[name])
 					Execute[name] = true;
 				}
 				else if (!item(name).estOuvert() && Execute[name]) {
-					alert("exec :" + Execute[name])
 					Execute[name] = false;
 				}
 			}
