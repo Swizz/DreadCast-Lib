@@ -1,8 +1,8 @@
 /*--------------Aitl.class.js-----------------*/
-var aitl = function (name) { var objet = { 
+classes["aitl"] = function (name) { var objet = { 
 
 	couleur : "blanc"
 
 
 
-}; return heritage(activable(name), objet);};
+}; return heritage(classes["activable"], objet);};
