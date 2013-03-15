@@ -1,5 +1,5 @@
 /*--------------Item.class.js-----------------*/
-var item = function (name) { var objet = { 
+classes["item"] = function (name) { var objet = { 
 
     type : name
     
@@ -8,4 +8,6 @@ var item = function (name) { var objet = {
     
     
 
-}; return heritage(window[name](name), objet);};
+}; return heritage(classes[name](name), objet);};
+
+var item = classes["item"];
