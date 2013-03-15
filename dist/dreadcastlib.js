@@ -73,6 +73,7 @@ classes["activable"] = function (name) { var objet = {
 					Execute[name] = true;
 				}
 				else if (!item(name).estOuvert() && Execute[name]) {
+					alert("exec :" + Execute[name])
 					Execute[name] = false;
 				}
 			}
