@@ -65,14 +65,14 @@ classes["activable"] = function (name) { var objet = {
 		},
 
 	ouverture: function(callback) { 
-			Execute[name] = false;
+			Execute[name+"-"] = false;
 			Execute[name+"_"] = function() {
-				if (item(name).estOuvert() && !Execute[name]){
+				if (item(name).estOuvert() && !Execute[name+"-"]){
 					callback();
-					Execute[name] = true;
+					Execute[name+"-"] = true;
 				}
-				else if (!item(name).estOuvert() && Execute[name]) {
-					Execute[name] = false;
+				else if (!item(name).estOuvert() && Execute[name+"-"]) {
+					Execute[name+"-"] = false;
 				}
 			}
 			
@@ -80,14 +80,14 @@ classes["activable"] = function (name) { var objet = {
 		},
 		
 	fermeture: function(callback) { 
-			Execute[name] = false;
+			Execute["-"+name] = false;
 			Execute["_"+name] = function() {
-				if (item(name).estOuvert() && !Execute[name]){
-					Execute[name] = true;
+				if (item(name).estOuvert() && !Execute["-"+name]){
+					Execute["-"+name] = true;
 				}
-				else if (!item(name).estOuvert() && Execute[name]) {
+				else if (!item(name).estOuvert() && Execute["-"+name]) {
 					callback();
-					Execute[name] = false;
+					Execute["-"+name] = false;
 				}
 			}
 			
