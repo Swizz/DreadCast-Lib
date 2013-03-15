@@ -1,12 +1,12 @@
-/*! DreadCastLib - v0 - 2012-12-01
+/*! DreadCastLib - v0 - 2013-03-15
 * http://www.dreadcast.me/
-* Copyright (c) 2012 Nobody; Licensed WTF Public License */
+* Copyright (c) 2013 Nobody; Licensed WTF Public License */
 
 /*--------------Init.js-----------------*/
 var VRAI = true; 
 var FAUX = false;
-var classes = {};
 
+var classes = {};
 
 /*-------------Faire un heritage-------------------*/
 function heritage(object1, object2) { 
@@ -115,6 +115,48 @@ classes["item"] = function (name) { var objet = {
 
 var item = classes["item"];
 
+/*--------------Deck.class.js-----------------*/
+classes["deck"] = function (name) { var objet = { 
+
+	type1 : "deck retro",
+	type2 : "deck orion"
+
+
+
+}; return heritage(classes["activable"], objet);};
+
+//TODO : faire la distinction entre Orion, Retro et autre.
+
+/*--------------ConvertisseurPTI.class.js-----------------*/
+classes["convertisseur pti"] = function (name) { var objet = { 
+
+	//nothing here
+
+
+
+}; return heritage(classes["activable"], objet);};
+
+
+/*--------------TerminalPortable.class.js-----------------*/
+classes["terminal portable"] = function (name) { var objet = { 
+
+	//nothing here
+
+
+
+}; return heritage(classes["activable"], objet);};
+
+
+/*--------------TerminalPortable.class.js-----------------*/
+classes["terminal portable"] = function (name) { var objet = { 
+
+	//nothing here
+
+
+
+}; return heritage(classes["activable"], objet);};
+
+
 /*--------------Aitl.class.js-----------------*/
 classes["aitl"] = function (name) { var objet = { 
 
@@ -122,4 +164,4 @@ classes["aitl"] = function (name) { var objet = {
 
 
 
-}; return heritage(classes["activable"](name), objet);};
+}; return heritage(classes["activable"], objet);};
