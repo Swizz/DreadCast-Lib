@@ -111,7 +111,7 @@ classes["item"] = function (name) { var objet = {
     
     
 
-}; return heritage(window[name](name), objet);};
+}; return heritage(classes[name](name), objet);};
 
 var item = classes["item"];
 
@@ -122,4 +122,4 @@ classes["aitl"] = function (name) { var objet = {
 
 
 
-}; return heritage(activable(name), objet);};
+}; return heritage(classes["activable"](name), objet);};
