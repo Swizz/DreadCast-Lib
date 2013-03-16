@@ -9,34 +9,44 @@ classes["activable"] = function (name) { var objet = {
 			return (getElementsByRegExpId(reg).length != 0) ? true : false;
 		},
 
-	ouverture: function(callback) { 
-			Execute[name+"-"] = false;
-			Execute[name+"_"] = function() {
-				if (item(name).estOuvert() && !Execute[name+"-"]){
+	ouverture: function(callback) {
+			var rang = dernierRang + 1;
+			dernierRang = rang;
+			Execute[name+"-"+rang] = false;
+			Execute[name+"_"+rang] = function() {
+				if (item(name).estOuvert() && !Execute[name+"-"+rang]){
 					callback();
 					Execute[name+"-"] = true;
 				}
-				else if (!item(name).estOuvert() && Execute[name+"-"]) {
-					Execute[name+"-"] = false;
+				else if (!item(name).estOuvert() && Execute[name+"-"+rang]) {
+					Execute[name+"-"+rang] = false;
 				}
 			}
 			
-			setInterval(Execute[name+"_"], 500);
+			Execute[name+":"+rang] = setInterval(Execute[name+"_"+rang], 500);
+
+			return rang;
 		},
 		
 	fermeture: function(callback) { 
-			Execute["-"+name] = false;
-			Execute["_"+name] = function() {
-				if (item(name).estOuvert() && !Execute["-"+name]){
-					Execute["-"+name] = true;
+			var rang = dernierRang +1;
+			dernierRang = rang;
+			Execute[name+"-"+rang] = false;
+			Execute[name+"_"+rang] = function() {
+				if (item(name).estOuvert() && !Execute[name+"-"+rang]){
+					Execute[name+"-"+rang] = true;
 				}
-				else if (!item(name).estOuvert() && Execute["-"+name]) {
+				else if (!item(name).estOuvert() && Execute[name+"-"+rang]) {
 					callback();
-					Execute["-"+name] = false;
+					Execute[name+"-"+rang] = false;
 				}
 			}
 			
-			setInterval(Execute["_"+name], 500);
+			Execute[name+":"+rang] = setInterval(Execute[name+"_"+rang], 500);
+			return rang;
+		},
+	retirer: function(rang) {
+			clearTimeout(Execute[name+":"+rang]);
 		}
 
 

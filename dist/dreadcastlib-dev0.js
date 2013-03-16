@@ -14,6 +14,7 @@ var VRAI = true;
 var FAUX = false;
 
 var classes = {};
+var dernierRang = 0;
 
 /*-------------Faire un heritage-------------------*/
 function heritage(object1, object2) { 
@@ -71,34 +72,44 @@ classes["activable"] = function (name) { var objet = {
 			return (getElementsByRegExpId(reg).length != 0) ? true : false;
 		},
 
-	ouverture: function(callback) { 
-			Execute[name+"-"] = false;
-			Execute[name+"_"] = function() {
-				if (item(name).estOuvert() && !Execute[name+"-"]){
+	ouverture: function(callback) {
+			var rang = dernierRang + 1;
+			dernierRang = rang;
+			Execute[name+"-"+rang] = false;
+			Execute[name+"_"+rang] = function() {
+				if (item(name).estOuvert() && !Execute[name+"-"+rang]){
 					callback();
 					Execute[name+"-"] = true;
 				}
-				else if (!item(name).estOuvert() && Execute[name+"-"]) {
-					Execute[name+"-"] = false;
+				else if (!item(name).estOuvert() && Execute[name+"-"+rang]) {
+					Execute[name+"-"+rang] = false;
 				}
 			}
 			
-			setInterval(Execute[name+"_"], 500);
+			Execute[name+":"+rang] = setInterval(Execute[name+"_"+rang], 500);
+
+			return rang;
 		},
 		
 	fermeture: function(callback) { 
-			Execute["-"+name] = false;
-			Execute["_"+name] = function() {
-				if (item(name).estOuvert() && !Execute["-"+name]){
-					Execute["-"+name] = true;
+			var rang = dernierRang +1;
+			dernierRang = rang;
+			Execute[name+"-"+rang] = false;
+			Execute[name+"_"+rang] = function() {
+				if (item(name).estOuvert() && !Execute[name+"-"+rang]){
+					Execute[name+"-"+rang] = true;
 				}
-				else if (!item(name).estOuvert() && Execute["-"+name]) {
+				else if (!item(name).estOuvert() && Execute[name+"-"+rang]) {
 					callback();
-					Execute["-"+name] = false;
+					Execute[name+"-"+rang] = false;
 				}
 			}
 			
-			setInterval(Execute["_"+name], 500);
+			Execute[name+":"+rang] = setInterval(Execute[name+"_"+rang], 500);
+			return rang;
+		},
+	retirer: function(rang) {
+			clearTimeout(Execute[name+":"+rang]);
 		}
 
 
@@ -121,6 +132,20 @@ classes["item"] = function (name) { var objet = {
 }; return heritage(classes[name](name), objet);};
 
 var item = classes["item"];
+
+/*--------------Bouton.class.js-----------------*/
+classes["bouton"] = function (titre, action) { var objet = { 
+
+	titre : titre,
+	action : action,
+	executer : function() { action()}
+
+
+
+}; return objet; };
+
+var bouton = classes["bouton"];
+
 
 /*--------------Deck.class.js-----------------*/
 classes["deck"] = function (name) { var objet = { 
@@ -165,10 +190,49 @@ classes["none"] = function (name) { var objet = {
 
 
 /*--------------Aitl.class.js-----------------*/
+var boutons = { };
+boutons["Navigation"] = new Array();
+boutons["Action"] = new Array();
+
+// recherche des boutons déjà implementé
+function rechercheBoutons() {
+	var reg = new RegExp("^db_"+name+"_\\d+$", "i");
+	var aitl = getElementsByRegExpId(reg);
+	    aitl = aitl[0];
+
+	var boutons = aitl.getElementsByClassName("navigation");
+	boutons = boutons[0].childNodes;
+	for (var i = 0; i < boutons.length; i++) {     
+	         if (boutons[i].nodeType === 1) {
+			boutons["Navigation"].push(boutons[i]);
+		 }
+	}
+
+
+	boutons = aitl.getElementsByClassName("actions");
+	boutons = boutons[0].childNodes;
+	for (var i = 0; i < boutons.length; i++) {
+	         if (boutons[i].nodeType === 1) {
+		        boutons["Action"].push(boutons[i]);
+		}
+	}
+
+}
+
+item("aitl").ouverture(rechercheBoutons);
+
 classes["aitl"] = function (name) { var objet = { 
 
-	couleur : "blanc"
+	couleur : "blanc",
+	boutonsNavigation : boutons["Navigation"],
+	boutonsAction : boutons["Action"],
+	ajouterBouton : function(bouton, type) {
+				
+
+			}
 
 
 
-}; return heritage(classes["activable"](name), objet);};
+}; 
+
+return heritage(classes["activable"](name), objet);};
