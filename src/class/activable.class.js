@@ -16,7 +16,7 @@ classes["activable"] = function (name) { var objet = {
 			Execute[name+"_"+rang] = function() {
 				if (item(name).estOuvert() && !Execute[name+"-"+rang]){
 					callback();
-					Execute[name+"-"] = true;
+					Execute[name+"-"+rang] = true;
 				}
 				else if (!item(name).estOuvert() && Execute[name+"-"+rang]) {
 					Execute[name+"-"+rang] = false;

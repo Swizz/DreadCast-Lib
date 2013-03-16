@@ -79,7 +79,7 @@ classes["activable"] = function (name) { var objet = {
 			Execute[name+"_"+rang] = function() {
 				if (item(name).estOuvert() && !Execute[name+"-"+rang]){
 					callback();
-					Execute[name+"-"] = true;
+					Execute[name+"-"+rang] = true;
 				}
 				else if (!item(name).estOuvert() && Execute[name+"-"+rang]) {
 					Execute[name+"-"+rang] = false;
@@ -190,49 +190,46 @@ classes["none"] = function (name) { var objet = {
 
 
 /*--------------Aitl.class.js-----------------*/
-var boutons = { };
-boutons["Navigation"] = new Array();
-boutons["Action"] = new Array();
-
-// recherche des boutons déjà implementé
-function rechercheBoutons() {
-	var reg = new RegExp("^db_"+name+"_\\d+$", "i");
-	var aitl = getElementsByRegExpId(reg);
-	    aitl = aitl[0];
-
-	var boutons = aitl.getElementsByClassName("navigation");
-	boutons = boutons[0].childNodes;
-	for (var i = 0; i < boutons.length; i++) {     
-	         if (boutons[i].nodeType === 1) {
-			boutons["Navigation"].push(boutons[i]);
-		 }
-	}
-
-
-	boutons = aitl.getElementsByClassName("actions");
-	boutons = boutons[0].childNodes;
-	for (var i = 0; i < boutons.length; i++) {
-	         if (boutons[i].nodeType === 1) {
-		        boutons["Action"].push(boutons[i]);
-		}
-	}
-
-}
-
-item("aitl").ouverture(rechercheBoutons);
+var boutonsListe = { Navigation : [], Action : []};
 
 classes["aitl"] = function (name) { var objet = { 
+	 rechercheBoutons : function() {
+		var reg = new RegExp("^db_aitl_\\d+$", "i");
+		var aitlui = getElementsByRegExpId(reg);
+	    	aitlui = aitlui[0];
 
-	couleur : "blanc",
-	boutonsNavigation : boutons["Navigation"],
-	boutonsAction : boutons["Action"],
-	ajouterBouton : function(bouton, type) {
-				
+		var boutons = aitlui.getElementsByClassName("navigation");
+		boutons = boutons[0].childNodes;
+		for (var i = 0; i < boutons.length; i++) {     
+	        	 if ((boutons[i].className == "menu1") || (boutons[i].className == "menu2") || (boutons[i].className == "menu3")) {
+		
+			boutonsListe["Navigation"].push(new bouton(boutons[i].innerText, boutons[i].onclick));
+			}
+		}
 
+
+		boutons = aitlui.getElementsByClassName("actions");
+		boutons = boutons[0].childNodes;
+		for (var i = 0; i < boutons.length; i++) {
+	        	 if ((boutons[i].className == "menu1") || (boutons[i].className == "menu2") || (boutons[i].className == "menu3")) {
+			boutonsListe["Action"].push(new bouton(boutons[i].innerText, boutons[i].onclick));
+				}
 			}
 
+		},
+
+	couleur : "blanc",
+	boutonsNavigation : boutonsListe["Navigation"],
+	boutonsAction : boutonsListe["Action"],
+	ajouterBouton : function(bouton, type) {
+				boutonsListe[type].push(bouton);
+			}
 
 
 }; 
 
 return heritage(classes["activable"](name), objet);};
+
+
+item("aitl").ouverture(item("aitl").rechercheBoutons);
+
