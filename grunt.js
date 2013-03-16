@@ -9,7 +9,7 @@ module.exports = function(grunt) {
         '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
         '<%= pkg.homepage ? "* " + pkg.homepage + "\n" : "" %>' +
         '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
-        ' Licensed <%= pkg.license.name %> \n <%= pkg.license.description %>\n\n' +
+        ' Licensed <%= pkg.license.type %> \n <%= pkg.license.description %>\n\n' +
         '* Contributors : <%= pkg.contributors.names %> */'
     },
     qunit: {
