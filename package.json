@@ -5,7 +5,8 @@
   "version": "0.0.1",
   "homepage": "http://www.dreadcast.me/",
   "author": {
-    "name": "Quentin Gerodel (aka Swizz540 | Gideon)"
+    "name": "Quentin Gerodel (aka Swizz540 | Gideon)",
+	"email": "quentin.g[at]laposte[dot]net"
   },
   "contributors": {
     "names": "nobody, noone"

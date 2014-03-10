@@ -7,9 +7,24 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
       '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
-      '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
-      '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
-      ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
+      '<%= pkg.homepage ? " * " + pkg.homepage + "\\n" : "" %>' +
+      ' *\n' +
+      ' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %> <<%= pkg.author.email %>>\n' +
+      ' *\n' +
+      ' * Permission to use, copy, modify, and distribute this software for any\n' +
+      ' * purpose with or without fee is hereby granted, provided that the above\n' +
+      ' * copyright notice and this permission notice appear in all copies.\n' +
+      ' *\n' +
+      ' * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES\n' +
+      ' * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF\n' +
+      ' * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR\n' +
+      ' * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES\n' +
+      ' * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN\n' +
+      ' * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF\n' +
+      ' * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.\n' +
+      ' * \n' +
+      ' * Thanks to <%= pkg.contributors.names %> \n' +
+      ' */\n\n',
     // Task configuration.
     concat: {
       options: {
@@ -17,7 +32,7 @@ module.exports = function(grunt) {
         stripBanners: true
       },
       dist: {
-        src: ['src/init.js', 'src/misc.js', 'src/class/*.class.js'],
+        src: ['src/init.js', 'src/misc.js', 'src/class/item.class.js', 'src/class/activable.class.js', 'src/class/*.class.js'],
         dest: 'dist/<%= pkg.name %>-dev<%= pkg.version %>.js'
       }
     },
